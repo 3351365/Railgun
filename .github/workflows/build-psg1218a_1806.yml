@@ -8,7 +8,7 @@
 # Description: Build ImmortalWrt using GitHub Actions
 #
 
-name: Build psg1218a_1806
+name: Build phicomm_k2-v22.4_18.06-k5.4
 
 on:
   repository_dispatch:
@@ -21,9 +21,9 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: openwrt-18.06
+  REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: seeds/psg1218a_2102.seed
+  CONFIG_FILE: seeds/phicomm_k2-v22.4_18.06-k5.4.seed
   DIY_P1_SH: diy/ramips_mt7620/phicomm_k2/diy-before-feeds.sh
   DIY_P2_SH: diy/ramips_mt7620/phicomm_k2/diy-after-feeds.sh
   UPLOAD_BIN_DIR: false
@@ -138,7 +138,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-phicomm_psg1218a_1806" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-phicomm_k2-v22.4_18.06-k5.4" >> $GITHUB_OUTPUT
         touch release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "[WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
