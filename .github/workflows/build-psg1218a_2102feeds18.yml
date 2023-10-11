@@ -8,7 +8,7 @@
 # Description: Build ImmortalWrt using GitHub Actions
 #
 
-name: Build psg1218a_2102feeds18
+name: Build psg1218a_1806
 
 on:
   repository_dispatch:
@@ -20,9 +20,9 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/3351365/immortalwrt
-  REPO_BRANCH: openwrt-21.02
-  FEEDS_CONF: feeds.conf.default18
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  REPO_BRANCH: openwrt-18.06
+  FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: seeds/psg1218a_2102.seed
   DIY_P1_SH: diy/ramips_mt7620/phicomm_k2/diy-before-feeds.sh
   DIY_P2_SH: diy/ramips_mt7620/phicomm_k2/diy-after-feeds.sh
@@ -61,7 +61,7 @@ jobs:
 
     - name: Load custom feeds
       run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF immortalwrt/feeds.conf.default18
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF immortalwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd immortalwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
@@ -138,7 +138,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-phicomm_psg1218a_2102feeds18" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-phicomm_psg1218a_1806" >> $GITHUB_OUTPUT
         touch release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "[WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
