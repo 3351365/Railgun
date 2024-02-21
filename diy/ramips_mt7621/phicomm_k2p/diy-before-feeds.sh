@@ -10,4 +10,4 @@ function git_sparse_clone() {
 }
 
 # Add mtkiappd support for 802.11 k/v/r
-git_sparse_clone https://github.com/coolsnowwolf/lede lede package/lean/mt/mtkiappd package/kernel/mt-drivers/mtkiappd
+##git_sparse_clone https://github.com/coolsnowwolf/lede lede package/lean/mt/mtkiappd package/kernel/mt-drivers/mtkiappd
